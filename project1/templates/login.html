@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+   body {
+      font-family:Arial, Helvetica, sans-serif;  
+      background-color: #000000;
+      font-size: larger;
+      margin: 0;
+      padding: 0;
+      background-image: url("{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\loginnn-01 (1).png' %}");
+      background-attachment: fixed;
+      background-size: 100% 100%;
+
+    }
+    
+    h1 {
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      color: #ffffff;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px #c1c1c1;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      padding-right: 3px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 3px;
+      background-color: #f2f2f2;
+    }
+    
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+
+  </head>
+  <body>
+    <h1>Login</h1>
+    
+  </body>
+  <form method="post" action="{% url 'webpage2' %}">
+    {% csrf_token %} 
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Login</button>
+  </form>
+  
+  
+</html>

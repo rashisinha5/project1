@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+      body{
+        background-color:white;
+        background-image: url("{% static 'C:\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\mainnnnn.jpg' %}");
+        background-attachment: fixed;
+        background-size: 100% 100%;
+       }
+       #zoomed-image {
+           cursor: pointer;
+       }
+    
+       #modal {
+           display: none;
+           position: fixed;
+           z-index: 9999;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0, 0, 0, 0.7);
+           text-align: center;
+       }
+    
+       #modal-image {
+           max-width: 90%;
+           max-height: 90%;
+           margin: 5% auto;
+       }
+       .heading{
+         margin-top: 15px;
+         text-align: center;
+         text-shadow: 0cqmax;
+         text-decoration-color: black;
+         font-family:'Bebas Neue';
+         font-size: 54px;
+         color:black ;
+         text-decoration: underline;    
+       }
+       .logout-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+      
+      #logout-button {
+        background-color:black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+      }
+      
+      #logout-button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      #logout-button:hover {
+        background-color:rgb(228,31,31);;
+      }
+      
+      #logout-button:hover:before {
+        opacity: 1;
+      }
+      </style>
+</head>
+<body>
+  <div class="logout-container">
+    <button id="logout-button"><a href={% url 'webpage2'%}>BACK</a></button>
+  </div>
+  <h1 class="heading">Time-Table</h1>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4">
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-2</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">COMP SY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-1</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">COMP SY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-1</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">COMP TY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-2</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">COMP TY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-5</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">FY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-6</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">FY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-7</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">FY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" id="zoomed-image"  class="object-cover object-center w-full h-full block" src="{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\2023-05-20 (3).png' %}" onclick="openModal(this)">
+                
+              </a>
+              <div id="modal">
+                <img id="modal-image" src="" alt="Zoomed Image">
+            </div>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">DIV-8</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">FY</h2>
+                <p class="mt-1"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        function openModal(image) {
+            var modal = document.getElementById("modal");
+            var modalImage = document.getElementById("modal-image");
+            
+            modalImage.src = image.src;
+            modal.style.display = "block";
+        }
+        
+        function closeModal() {
+            var modal = document.getElementById("modal");
+            
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            var modal = document.getElementById("modal");
+            
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+    
+</body>
+</html>

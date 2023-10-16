@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>""
+        body {
+            font-family:Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+            font-size: larger;
+            background-image: url("{% static 'C:\Users\rashi\OneDrive\Desktop\college\SEM-4\RPPOOP\PROJECT\project1\project1\static\css\mainnnnn.jpg' %}");
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            
+            margin: 0;
+            padding: 0;
+            
+        
+	
+        }
+        .save-button {
+            padding: 10px 20px;
+            background-color: black
+;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: rgb(23, 193, 23);
+        }
+
+        td.modified {
+            background-color: red;
+        }
+
+        /* Add the following CSS rule to target the first column */
+        td:first-child {
+            background-color: white;
+        }
+        select#day-select {
+            border: 1px solid black;
+        }
+        .logout-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+          }
+          
+          #logout-button {
+            background-color:black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+          }
+          
+          #logout-button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+          
+          #logout-button:hover {
+            background-color:rgb(228,31,31);
+          }
+          
+          #logout-button:hover:before {
+            opacity: 1;
+          }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <button id="logout-button"><a href="login.html"><a href={% url 'webpage2'%}>BACK</a></button>
+      </div>
+<button class="save-button" onclick="saveFunction()" >Click to Save Changes</button>
+<script src="save_button.js"></script>
+
+<div class="mt-4">
+    <label for="day-select">Select a day:</label>
+    <select id="day-select" class="px-2 py-1">
+
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+        <option value="saturday">Saturday</option>
+    </select>
+</div>
+
+<div class="table-responsive">
+    <table>
+        <thead>
+        <tr>
+            <th>classrooms</th>
+            <th>08.00am-09.00am</th>
+            <th>09.00am-10.00am</th>
+            <th>10.00am-11.00am</th>
+            <th>11.00am-12.00pm</th>
+            <th>12.00pm-01.00pm</th>
+            <th>01.00pm-02.00pm</th>
+            <th>02.00pm-03.00pm</th>
+            <th>03.00pm-04.00pm</th>
+            <th>04.00pm-05.00pm</th>
+            <th>05.00pm-06.00pm</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        <!-- Rows will be dynamically generated here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    var tableBody = document.getElementById('table-body');
+    var daySelect = document.getElementById('day-select');
+
+    // Define the data for each day
+    var data = {
+        monday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', 'MVCDE-dsy', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', 'VCPDE-div2', 'TOC-div2', 'BE-div2', 'MT-div2', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+        tuesday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', 'MVCDE-dsy', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', 'DSA II-div2', 'TOC-div2', 'DC-div2', 'BE-div2', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+        wednesday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', 'MVCDE-dsy', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', 'VCPDEtut-div2 M1', 'TOC-div2', 'DC-div2', '', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+        thursday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', 'MVCDE-dsy', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', 'DSA II-div2', 'BE-div2', 'DC-div2', 'MT-div2', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+        friday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', 'MVCDE-dsy', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', 'VCPDE-div2', 'IFC_SA-div2', 'RPPOOP-div2', 'MT-div2', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+        saturday: [
+            ['AC 101', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 102', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 103', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 104', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 201', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 202', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 203', '', '', '', '', '', '', '', '', '', ''],
+            ['AC 204', '', '', '', '', '', '', '', '', '', ''],
+            ['Cognizant lab', '', '', '', '', '', '', '', '', '', ''],
+            ['Seminar Hall', '', '', '', '', '', '', '', '', '', ''],
+            // Repeat for each row
+        ],
+
+    };
+
+    // Variable to store the timeout ID
+    var timeoutId;
+
+    // Generate table rows based on the selected day
+function generateTableRows(day) {
+    var rows = data[day];
+    var tableRows = '';
+
+    // Load the data from localStorage
+    function loadData(day) {
+        var savedData = localStorage.getItem(day);
+
+        if (savedData) {
+            var parsedData = JSON.parse(savedData);
+            for (var i = 0; i < rows.length; i++) {
+                for (var j = 0; j < rows[i].length; j++) {
+                    rows[i][j] = parsedData[i][j];
+                }
+            }
+        }
+    }
+
+    // Call the loadData function to load the data from localStorage
+    loadData(day);
+
+    var editAccess = {{request.session.edit_access}};
+    var contentEditable = editAccess ? 'true' : 'false'; // Conditionally set contenteditable attribute
+    
+    rows.forEach(function (row) {
+        var tableData = row.map(function (cell) {
+            var modifiedClass = cell.trim() !== '' ? 'modified' : '';
+            return '<td contenteditable="' + contentEditable + '" class="' + modifiedClass + '">' + cell + '</td>';
+            // return '<td contenteditable="true" class="' + modifiedClass + '">' + cell + '</td>';
+        }).join('');
+
+        tableRows += '<tr>' + tableData + '</tr>';
+    });
+
+    tableBody.innerHTML = tableRows;
+
+    // Clear any existing timeout
+    clearTimeout(timeoutId);
+
+    // Set a new timeout to save the data after 5 seconds
+    timeoutId = setTimeout(function () {
+        saveData(day);
+    }, 5000);
+
+    // Load the data for the initial selected day
+    loadData(day);
+}
+
+    // Generate table rows for the initial selected day
+    generateTableRows(daySelect.value);
+
+    // Add event listener to the dropdown
+daySelect.addEventListener('change', function () {
+    loadData(this.value); // Load the data from localStorage
+    generateTableRows(this.value); // Generate table rows for the selected day
+});
+
+
+    // Add event listeners to each editable cell
+    var cells = document.querySelectorAll('td[contenteditable="true"]');
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('input', function () {
+            if (this.innerText.trim() !== '') {
+                this.classList.add('modified');
+            } else {
+                this.classList.remove('modified');
+            }
+
+            // Clear any existing timeout
+            clearTimeout(timeoutId);
+
+            // Set a new timeout to save the data after 5 seconds
+            timeoutId = setTimeout(function () {
+                saveData(daySelect.value);
+            }, 5000);
+        });
+    }
+
+    // Save the data to localStorage
+    function saveData(day) {
+        var rows = tableBody.getElementsByTagName('tr');
+        var newData = [];
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName('td');
+            var rowData = [];
+
+            for (var j = 0; j < cells.length; j++) {
+                rowData.push(cells[j].innerText.trim());
+            }
+
+            newData.push(rowData);
+        }
+        cells[i].addEventListener('blur', function () {
+        if (this.innerText.trim() === '') {
+            this.classList.remove('modified');
+        }
+    });
+
+        // Store the data in localStorage
+        localStorage.setItem(day, JSON.stringify(newData));
+    }
+
+    // Load the data from localStorage
+    // Load the data from localStorage
+function loadData(day) {
+  var savedData = localStorage.getItem(day);
+
+  if (savedData) {
+    var parsedData = JSON.parse(savedData);
+    var rows = tableBody.getElementsByTagName('tr');
+
+    for (var i = 0; i < rows.length; i++) {
+      var cells = rows[i].getElementsByTagName('td');
+
+      for (var j = 0; j < cells.length; j++) {
+        cells[j].innerText = parsedData[i][j];
+
+        if (parsedData[i][j].trim() !== '') {
+          cells[j].classList.add('modified');
+        } else {
+          cells[j].classList.remove('modified');
+        }
+      }
+    }
+  }
+}
+
+
+    // Load the data for the initial selected day
+    loadData(daySelect.value);
+
+    // Save the data when the save button is clicked
+    function saveFunction() {
+        saveData(daySelect.value);
+        alert('Data saved successfully!');
+    }
+
+</script>
+
+</body>
+</html>
