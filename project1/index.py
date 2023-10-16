@@ -29,7 +29,7 @@ def webpage2(request):
       #  print("YES")
         username=request.POST.get('username')
         pass1=request.POST.get('password')
-        if username in ['sajal','rashi','teacher','san']:
+        if username in ['sajal','rashi','teacher']:
             request.session.flush()
             request.session['edit_access'] = 'true'
         else:
