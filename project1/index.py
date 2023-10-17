@@ -6,19 +6,19 @@ from django.contrib.auth import authenticate,login
 
 
 def webpage1(request):
-    # print("YES")
-    # print(request)
-    # if request.method=='POST':
-    #     print("YES")
-    #     username=request.POST.get('username')
-    #     pass1=request.POST.get('password')
-    #     user=authenticate(request,username=username,password=pass1)
-    #     #print("password", username, pass1)
-    #     if user is not None:
-    #         login(request,user)
-    #         return redirect('webpage2')
-    #     else:
-    #         return HttpResponse("Username or Password is incorrect")
+    print("YES")
+    print(request)
+    if request.method=='POST':
+        print("YES")
+        username=request.POST.get('username')
+        pass1=request.POST.get('password')
+        user=authenticate(request,username=username,password=pass1)
+        #print("password", username, pass1)
+        if user is not None:
+            login(request,user)
+            return redirect('webpage2')
+        else:
+            return HttpResponse("Username or Password is incorrect")
             
     return render(request,'login.html')
 
